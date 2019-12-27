@@ -30,7 +30,7 @@ The library is configured using environment variables. The following variables
 are used, with the username and password being required.
 
 ```bash
-PELOTON_USERNAME
+PELOTON_USER
 PELOTON_PASSWORD
 PELOTON_IGNORE_WARNINGS
 PELOTON_SSL_VERIFY
