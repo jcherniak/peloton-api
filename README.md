@@ -26,24 +26,15 @@ Utilizing the library is pretty simple. A super quick example is below, with mor
 find time (this is a side/pet project after all).
 
 #### Configuration
-The library requires a configuration file, whos path is either pulled from the environment variale `PELOTON_CONFIG`,
-or looked for in the hard-coded `~/.config/peloton` (which can be a symlink to a unified config if you have many). The
-only config block that the library looks for is shown below.
+The library is configured using environment variables. The following variables
+are used, with the username and password being required.
 
 ```bash
-[peloton]
-username = Your_Peloton_Username_Or_Email
-password = Your_Peloton_Password
-
-# Optional: Whether or not to ignore warnings that are thrown (default: True)
-ignore_warnings = True
-
-# Optional: Verify SSL Authenticity (default: True)
-ssl_verify = True
-
-# Optional: Filepath to a local cert bundle. Useful when SSL MITM is in play (default: None)
-ssl_cert = ''
-
+PELOTON_USERNAME
+PELOTON_PASSWORD
+PELOTON_IGNORE_WARNINGS
+PELOTON_SSL_VERIFY
+PELOTON_SSL_CERT
 ```
 
 #### Example Usage

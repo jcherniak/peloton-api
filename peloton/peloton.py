@@ -35,18 +35,13 @@ SHOW_WARNINGS = False
 
 try:
 
-    import configparser
-    parser = configparser.ConfigParser()
-    conf_path = os.environ.get("PELOTON_CONFIG", "~/.config/peloton")
-    parser.read(os.path.expanduser(conf_path))
-
     # Mandatory credentials
-    PELOTON_USERNAME = parser.get("peloton", "username")
-    PELOTON_PASSWORD = parser.get("peloton", "password")
+    PELOTON_USERNAME = os.environ['PELOTON_USER']
+    PELOTON_PASSWORD = os.environ['PELOTON_PASSWORD']
 
     # Additional option to show or hide warnings
     try:
-        ignore_warnings = parser.getboolean("peloton", "ignore_warnings")
+        ignore_warnings = os.environ['PELOTON_IGNORE_WARNINGS']
         SHOW_WARNINGS = False if ignore_warnings else True
 
     except:
@@ -59,18 +54,18 @@ try:
 
     # Whether or not to verify SSL connections (defaults to True)
     try:
-        SSL_VERIFY = parser.getboolean("peloton", "ssl_verify")
+        SSL_VERIFY = os.environ['PELOTON_SSL_VERIFY']
     except:
         SSL_VERIFY = True
 
     # If set, we'll use this cert to verify against. Useful when you're stuck behind SSL MITM
     try:
-        SSL_CERT = parser.get("peloton", "ssl_cert")
+        SSL_CERT = os.environ['PELOTON_SSL_CERT']
     except:
         SSL_CERT = None
 
 except Exception as e:
-    get_logger().error("No `username` or `password` found in section `peloton` in ~/.config/peloton\n"
+    get_logger().error("No `username` or `password` environment variable set\n"
                          "Please ensure you specify one prior to utilizing the API\n")
 
 if SHOW_WARNINGS:
